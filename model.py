@@ -27,4 +27,12 @@ async def chat_llm():
 
 
 
+async def llm_messages(agent,user_input,config_id):
+    print("\n" + "="*60)
 
+    if(user_input):
+        config={"configurable":{"thread_id":config_id}}
+        response=agent.invoke({"messages": [HumanMessage(content=user_input)]}, config)
+        return response["messages"][-1].content
+    else:
+        return "Hii I am the helpfull Assistant"
