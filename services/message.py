@@ -5,12 +5,12 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 from langchain_core.messages import HumanMessage
-from model import chat_llm,llm_messages
-from tockens import get_access_token
+from model import create_mcp_agent,llm_messages
+from tockens import get_access_token,google_tokens
 
 
 async def process_slack_message(user_message, channel):
-    agent = await chat_llm()
+    agent = await create_mcp_agent()
     BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
     bot_reply = await llm_messages(agent, user_message, channel)
 
@@ -46,7 +46,7 @@ async def process_teams_message(activity):
         return
 
 
-    agent = await chat_llm()
+    agent = await create_mcp_agent()
 
 
     reply_text = await llm_messages(agent, user_text, conversation_id)
@@ -68,3 +68,22 @@ async def process_teams_message(activity):
     }
 
     requests.post(url, json=payload, headers=headers)
+
+
+async def google_process_message(data):
+    space_name = data["chat"]["messagePayload"]["space"]["name"]
+    thread_name = data["chat"]["messagePayload"]["message"]["thread"]["name"]
+    mytext = data["chat"]["messagePayload"]["message"]["text"]
+    chat_service =  await  google_tokens()
+    message = {
+        "text": mytext,
+        "thread": {"name": thread_name} 
+    }
+    
+    chat_service.spaces().messages().create(
+        parent=space_name,
+        body=message,
+
+
+    ).execute()
+   

@@ -1,0 +1,79 @@
+{
+    "commonEventObject": {
+        "userLocale": "en",
+        "hostApp": "CHAT",
+        "platform": "WEB",
+        "timeZone": {
+            "id": "Asia/Kolkata",
+            "offset": 19800000.0
+        }
+    },
+    "authorizationEventObject": {
+        "systemIdToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyNzU0MDdjMzllODAzNmFhNzM1ZWIyYzE3YzU0ODc2MWNlZDZhNjQiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJodHRwczovL2RlZGUtbm9uc2VkaXRpb3VzLW1pY2hlbGluYS5uZ3Jvay1mcmVlLmRldi9nb29nbGUvbWVzc2FnZXMiLCJhenAiOiIxMDg3NzMyODcxOTkyNDM0NzQ1OTgiLCJlbWFpbCI6InNlcnZpY2UtODg5MzkyNDMxOTE2QGdjcC1zYS1nc3VpdGVhZGRvbnMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZXhwIjoxNzcyMTk3NTA4LCJpYXQiOjE3NzIxOTM5MDgsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsInN1YiI6IjEwODc3MzI4NzE5OTI0MzQ3NDU5OCJ9.Ome0pRBtvcrXIo-l42atqVWyBxKWqSzM0cAWBXaPn2V7uvG5D6F6ehAo6Eatqs6k-EJYTn2P829Ld4481RlZowsQG-lv7_Wc0RY-zHAlP1HaTmU5YEIv450AYhn-Vbx6wzC5Zh4a3DVZSfRqSGkcpKR2jmyp9LKJpTKQMxtrsf8D5epx5qnKzMzIJM01jv003miPo7XHbbYfpb7U4EI71lzv6SLGWBRsAjo1Dk0jEI2A_aU3rG8_D2tn2bhNsjXicusnzD7MoWag59saLeNJ6V3Nta_60XdBO2v851WC8ZTHsygyIRppSlO3t6GToPBoda0g1brr6LEXLb5ERfiJxg"
+    },
+    "chat": {
+        "user": {
+            "name": "users/103714787072231200314",
+            "displayName": "saichandu207Y1A1234 sai",
+            "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI8iAsfcfberjE_puvbS6I9ZDrrrgGFAWMYBlRNvfUxa41qxA=k-no",
+            "email": "saichandu207y1a1234@mlritm.ac.in",
+            "type": "HUMAN",
+            "domainId": "0koe8ja"
+        },
+        "eventTime": "2026-02-27T12:05:07.753247Z",
+        "messagePayload": {
+            "space": {
+                "name": "spaces/rpgfqSAAAAE",
+                "type": "DM",
+                "singleUserBotDm": true,
+                "spaceThreadingState": "THREADED_MESSAGES",
+                "spaceType": "DIRECT_MESSAGE",
+                "spaceHistoryState": "HISTORY_ON",
+                "lastActiveTime": "2026-02-27T12:05:07.753247Z",
+                "membershipCount": {
+                    "joinedDirectHumanUserCount": 1.0
+                },
+                "spaceUri": "https://chat.google.com/dm/rpgfqSAAAAE?cls=11"
+            },
+            "message": {
+                "name": "spaces/rpgfqSAAAAE/messages/A51zEncDaLI.A51zEncDaLI",
+                "sender": {
+                    "name": "users/103714787072231200314",
+                    "displayName": "saichandu207Y1A1234 sai",
+                    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI8iAsfcfberjE_puvbS6I9ZDrrrgGFAWMYBlRNvfUxa41qxA=k-no",
+                    "email": "saichandu207y1a1234@mlritm.ac.in",
+                    "type": "HUMAN",
+                    "domainId": "0koe8ja"
+                },
+                "createTime": "2026-02-27T12:05:07.753247Z",
+                "text": "hii",
+                "thread": {
+                    "name": "spaces/rpgfqSAAAAE/threads/A51zEncDaLI",
+                    "retentionSettings": {
+                        "state": "PERMANENT"
+                    }
+                },
+                "space": {
+                    "name": "spaces/rpgfqSAAAAE",
+                    "type": "DM",
+                    "singleUserBotDm": true,
+                    "spaceThreadingState": "THREADED_MESSAGES",
+                    "spaceType": "DIRECT_MESSAGE",
+                    "spaceHistoryState": "HISTORY_ON",
+                    "lastActiveTime": "2026-02-27T12:05:07.753247Z",
+                    "membershipCount": {
+                        "joinedDirectHumanUserCount": 1.0
+                    },
+                    "spaceUri": "https://chat.google.com/dm/rpgfqSAAAAE?cls=11"
+                },
+                "argumentText": "hii",
+                "retentionSettings": {
+                    "state": "PERMANENT"
+                },
+                "messageHistoryState": "HISTORY_ON",
+                "formattedText": "hii"
+            },
+            "configCompleteRedirectUri": "https://chat.google.com/api/bot_config_complete?token=AGSmvGNPZUMMqo7Hn6uV8OFLPldjf8Spny57QKPiVT5q1fw6Bk2y0sqJIATLx00Zw5QpOz4I9UjZ_UxXa1gE46-4W2Qvfidncsnj81aAAHCuOfY1tswMiNrtT44Y0GKOlV2j9MQj1U9630BqVAfTDT_hrg%3D%3D"
+        }
+    }
+}

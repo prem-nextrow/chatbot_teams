@@ -2,12 +2,10 @@ from aiohttp import web
 from fastapi import FastAPI,Request,Response,BackgroundTasks
 import requests
 from dotenv import load_dotenv
-import os
+from fastapi.responses import JSONResponse
 load_dotenv()
-from langchain_core.messages import HumanMessage
-from model import chat_llm,llm_messages
-from services.message import process_slack_message,process_teams_message
-from tockens import get_access_token
+from services.message import process_slack_message,process_teams_message,google_process_message
+
 
 
 
@@ -36,6 +34,11 @@ async def getSlackMessage(req:Request,background_task:BackgroundTasks):
 
 
 
+@app.post("/google/messages")
+async def getSlackMessage(req:Request,background_task:BackgroundTasks):
+    data = await req.json()
+    background_task.add_task(google_process_message,data)
+    JSONResponse(status_code=200, content={"text": " Processing..."})
 
 
 if __name__ == "__main__":
