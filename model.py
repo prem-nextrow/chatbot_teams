@@ -1,38 +1,53 @@
-from langchain_openai import AzureChatOpenAI
-from langchain_core.messages import HumanMessage, SystemMessage
-from dotenv import load_dotenv
-import os
+from langchain_anthropic import ChatAnthropic
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from langgraph.prebuilt import create_react_agent 
 from langgraph.checkpoint.memory import MemorySaver
-from langchain.agents import create_agent
+from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage
+from prompts import system_prompt
+import os
 
 load_dotenv()
-memory=MemorySaver()
-
-async def chat_llm():
+memory = MemorySaver()
 
 
-    llm = AzureChatOpenAI(
-    azure_endpoint=os.getenv("AZURE_END_POINT"),   
-    api_version=os.getenv("AZURE_VERSION"),       
-    azure_deployment=os.getenv("AZURE_DEPLOYMENT"),
-    api_key=os.getenv("AZURE_API_KEY"),           
-    temperature=0.7
-)
-    agent=create_agent(
-        model=llm,
-        checkpointer=memory,
-        system_prompt="you are the help full assistance to clear all the doubt and task given to you"
+async def create_mcp_agent():
+    llm = ChatAnthropic(
+        api_key=os.getenv("ANTHROPIC_API_KEY"),
+        model="claude-sonnet-4-6"
     )
+
+    client = MultiServerMCPClient(
+        {
+            "teams_mcp": {
+                "command": "python",
+                "args": ["mcp_server.py"],
+                "transport": "stdio",
+            }
+        }
+    )
+
+    tools = await client.get_tools()
+
+    agent = create_react_agent(
+        model=llm,
+        tools=tools,
+        checkpointer=memory,
+        prompt=system_prompt 
+    )
+
     return agent
 
 
+async def llm_messages(agent, user_input: str, config_id: str) -> str:
 
-async def llm_messages(agent,user_input,config_id):
-    print("\n" + "="*60)
 
-    if(user_input):
-        config={"configurable":{"thread_id":config_id}}
-        response=agent.invoke({"messages": [HumanMessage(content=user_input)]}, config)
+    if user_input:
+        config = {"configurable": {"thread_id": config_id}}
+        response = await agent.ainvoke(
+            {"messages": [HumanMessage(content=user_input)]},
+            config
+        )
         return response["messages"][-1].content
     else:
-        return "Hii I am the helpfull Assistant"
+        return "Hi! I am your helpful assistant."
