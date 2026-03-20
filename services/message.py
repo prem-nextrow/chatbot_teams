@@ -39,7 +39,13 @@ async def process_teams_message(activity):
         return
 
     user_text = activity.get("text", "")
-
+    
+    # Log the incoming message for debugging
+    print(f"\n{'='*60}")
+    print(f"Teams Message Received:")
+    print(f"  User text: '{user_text}'")
+    print(f"  Conversation ID: {conversation_id}")
+    print(f"{'='*60}\n")
 
     token = await get_access_token(tenant_id)
     if not token:
@@ -50,6 +56,10 @@ async def process_teams_message(activity):
 
 
     reply_text = await llm_messages(agent, user_text, conversation_id)
+    
+    print(f"\n{'='*60}")
+    print(f"Teams Reply (first 200 chars): {reply_text[:200]}...")
+    print(f"{'='*60}\n")
 
     url = f"{service_url}/v3/conversations/{conversation_id}/activities/{activity_id}"
 
