@@ -4,7 +4,7 @@ from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
-from prompts import system_prompt
+from system_prompts.prompts import system_prompt
 import os
 
 load_dotenv()
@@ -21,7 +21,7 @@ async def create_mcp_agent():
         {
             "teams_mcp": {
                 "command": "python",
-                "args": ["mcp_server.py"],
+                "args": ["tools/mcp_server.py"],
                 "transport": "stdio",
             }
         }

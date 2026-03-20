@@ -4,3 +4,7 @@ boto3
 python-calamine
 pandas
 langchain-mcp-adapters
+langchain_core
+langchain_anthropic
+langgraph
+fastmcp

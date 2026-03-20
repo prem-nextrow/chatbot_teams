@@ -1,12 +1,9 @@
-from aiohttp import web
 from fastapi import FastAPI,Request,Response,BackgroundTasks
 import requests
 from dotenv import load_dotenv
 from fastapi.responses import JSONResponse
 load_dotenv()
 from services.message import process_slack_message,process_teams_message,google_process_message
-
-
 
 
 app = FastAPI(title="AI Bot",description="you can ask any questions to solve")

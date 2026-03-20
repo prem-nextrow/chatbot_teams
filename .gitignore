@@ -1,3 +1,5 @@
 .env
-__pycache__
+__pycache__/
+*.pyc
 the-method-488707-m2-54dbb5cc5454.json
+*.json
