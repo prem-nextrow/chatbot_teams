@@ -3,19 +3,21 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent 
 from langgraph.checkpoint.memory import MemorySaver
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from system_prompts.prompts import system_prompt
 import os
-
 load_dotenv()
 memory = MemorySaver()
 
 
 async def create_mcp_agent():
+
     llm = ChatAnthropic(
         api_key=os.getenv("ANTHROPIC_API_KEY"),
         model="claude-sonnet-4-6"
     )
+
 
     client = MultiServerMCPClient(
         {
