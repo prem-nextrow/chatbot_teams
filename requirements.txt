@@ -9,3 +9,4 @@ langchain_anthropic
 langgraph
 fastmcp
 fastapi
+langchain_openai
