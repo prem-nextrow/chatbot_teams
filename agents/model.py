@@ -19,12 +19,14 @@ async def create_mcp_agent():
     )
 
 
+    mcp_url = "http://localhost:8001"
+    print(f"Connecting to MCP at: {mcp_url}/mcp", flush=True)
+
     client = MultiServerMCPClient(
         {
             "teams_mcp": {
-                "command": "python",
-                "args": ["tools/mcp_server.py"],
-                "transport": "stdio",
+                "url": f"{mcp_url}/mcp",
+                "transport": "streamable_http",
             }
         }
     )
