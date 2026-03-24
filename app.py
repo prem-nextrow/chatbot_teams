@@ -40,4 +40,4 @@ async def getSlackMessage(req:Request,background_task:BackgroundTasks):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app",host="localhost",port=8003,reload=True)
+    uvicorn.run("app:app",host="0.0.0.0",port=8003,reload=True)
