@@ -8,3 +8,4 @@ langchain_core
 langchain_anthropic
 langgraph
 fastmcp
+fastapi
