@@ -44,6 +44,7 @@ s3_service = S3Service()
 @mcp.tool()
 def list_reports() -> str:
     """List all available KORU reports from S3"""
+    print("i got called")
     reports = s3_service.list_files()
     if not reports:
         return "No reports found"
@@ -58,6 +59,7 @@ def analyze_report(report_name: str) -> str:
     Args:
         report_name: Name of the report file (e.g., 'hyatt-koru-report.xlsx')
     """
+    print("i can analyze i got called")
     try:
         # Ensure .xlsx extension
         if not report_name.endswith(".xlsx"):
