@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from system_prompts.prompts import system_prompt
-from openai import AzureOpenAI
+from langchain_openai import AzureChatOpenAI
 import os
 from enum import Enum
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -23,10 +23,11 @@ async def create_mcp_agent(model : AgentModel):
 
     
     if(model == AgentModel.OPENAI):
-       llm = AzureOpenAI(
+       llm = AzureChatOpenAI(
            api_version="2024-12-01-preview",
            azure_endpoint="https://koru-test-resource.cognitiveservices.azure.com/",
-           api_key=os.getenv("OPENAI_KEY")
+           api_key=os.getenv("OPENAI_KEY"),
+           azure_deployment="gpt-5.3-chat"
        )
     else:
         print("created gemeini llm object...")
