@@ -27,6 +27,7 @@ async def create_mcp_agent(model : AgentModel):
             model="claude-sonnet-4-6"
         )
     else:
+        print("created gemeini llm object...")
         llm = ChatGoogleGenerativeAI(
             google_api_key=os.getenv("GEMINI_API_KEY"),
             model="gemini-2.5-flash"
@@ -66,6 +67,7 @@ async def llm_messages(agent, user_input: str, config_id: str) -> str:
             {"messages": [HumanMessage(content=user_input)]},
             config
         )
+        print(response["messages"][-1].content)
         return response["messages"][-1].content
     else:
         return "Hi! I am your helpful assistant."
