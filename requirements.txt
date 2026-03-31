@@ -10,3 +10,4 @@ langgraph
 fastmcp
 fastapi
 langchain_openai
+langchain_google_genai

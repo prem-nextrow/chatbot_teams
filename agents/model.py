@@ -8,6 +8,7 @@ from langchain_core.messages import HumanMessage
 from system_prompts.prompts import system_prompt
 import os
 from enum import Enum
+from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 memory = MemorySaver()
 
@@ -26,12 +27,9 @@ async def create_mcp_agent(model : AgentModel):
             model="claude-sonnet-4-6"
         )
     else:
-        llm = ChatOpenAI(
-            model="qwen-3-235b-a22b-instruct-2507",   
-            api_key=os.getenv("CEREBRAS"),
-            base_url="https://api.cerebras.ai/v1",
-            temperature=0,
-            model_kwargs={"parallel_tool_calls": True}
+        llm = ChatGoogleGenerativeAI(
+            google_api_key=os.getenv("GEMINI_API_KEY"),
+            model="gemini-1.5-pro"
         )
 
 
