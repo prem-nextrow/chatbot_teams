@@ -59,15 +59,23 @@ async def create_mcp_agent(model : AgentModel):
     return agent
 
 async def llm_messages(agent, user_input: str, config_id: str) -> str:
-
-
     if user_input:
         config = {"configurable": {"thread_id": config_id}}
         response = await agent.ainvoke(
             {"messages": [HumanMessage(content=user_input)]},
             config
         )
-        print(response["messages"][-1].content)
-        return response["messages"][-1].content
+        content = response["messages"][-1].content
+
+        
+        if isinstance(content, list):
+            text_parts = [
+                block["text"] for block in content
+                if isinstance(block, dict) and block.get("type") == "text"
+            ]
+            content = "\n".join(text_parts)
+
+        print(content)
+        return content
     else:
         return "Hi! I am your helpful assistant."
