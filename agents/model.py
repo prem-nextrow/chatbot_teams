@@ -29,7 +29,7 @@ async def create_mcp_agent(model : AgentModel):
     else:
         llm = ChatGoogleGenerativeAI(
             google_api_key=os.getenv("GEMINI_API_KEY"),
-            model="gemini-1.5-pro"
+            model="gemini-2.5-flash"
         )
 
 
