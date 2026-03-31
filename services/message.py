@@ -45,7 +45,7 @@ async def process_teams_message(activity):
         return
 
     try:
-        agent = await create_mcp_agent(AgentModel.CLAUDE)
+        agent = await create_mcp_agent(AgentModel.OPENAI)
         reply_text = await llm_messages(agent, user_text, conversation_id)
     except Exception as e:
         print(f"i got this {e} so i am trying cerebras")
