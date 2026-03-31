@@ -6,7 +6,7 @@ load_dotenv()
 from langchain_core.messages import HumanMessage
 from agents.model import create_mcp_agent,llm_messages
 from services.tockens import get_access_token,google_tokens
-
+from agents.model import AgentModel
 
 async def process_slack_message(user_message, channel):
     agent = await create_mcp_agent()
@@ -44,12 +44,13 @@ async def process_teams_message(activity):
     if not token:
         return
 
-
-    agent = await create_mcp_agent()
-
-
-    reply_text = await llm_messages(agent, user_text, conversation_id)
-
+    try:
+        agent = await create_mcp_agent(AgentModel.CLAUDE)
+        reply_text = await llm_messages(agent, user_text, conversation_id)
+    except Exception as e:
+        print(f"i got this {e} so i am trying cerebras")
+        agent = await create_mcp_agent(AgentModel.QWEN)
+        reply_text = await llm_messages(agent, user_text, conversation_id)
     url = f"{service_url}/v3/conversations/{conversation_id}/activities/{activity_id}"
 
     payload = {
