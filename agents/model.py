@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from system_prompts.prompts import system_prompt
+from openai import AzureOpenAI
 import os
 from enum import Enum
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -14,18 +15,19 @@ memory = MemorySaver()
 
 
 class AgentModel(str,Enum):
-    CLAUDE = "claude"
+    OPENAI = "openai"
     QWEN = "qwen"
 
 
 async def create_mcp_agent(model : AgentModel):
 
     
-    if(model == AgentModel.CLAUDE):
-        llm = ChatAnthropic(
-            api_key=os.getenv("ANTHROPIC_API_KEY"),
-            model="claude-sonnet-4-6"
-        )
+    if(model == AgentModel.OPENAI):
+       llm = AzureOpenAI(
+           api_version="2024-12-01-preview",
+           azure_endpoint="https://koru-test-resource.cognitiveservices.azure.com/",
+           api_key=os.getenv("OPENAI_KEY")
+       )
     else:
         print("created gemeini llm object...")
         llm = ChatGoogleGenerativeAI(
